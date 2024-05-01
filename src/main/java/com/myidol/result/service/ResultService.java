@@ -53,6 +53,7 @@ public class ResultService {
                 .fashion(resultReq.getFashion())
                 .interest(resultReq.getInterest())
                 .hobby(resultReq.getHobby())
+                .picture(domain + "result/images/images.jpg") // 임시 사용
                 .build();
 
         Result resultRst = resultRepository.save(result);
@@ -73,9 +74,6 @@ public class ResultService {
 
         Result resultRst = resultRepository.findById(resultId).orElseThrow(() -> new CommonException(CommonErrorCode.NOT_FOUND));
         convertResultToResultRes(resultRst, resultRes);
-
-        // 임시 사용
-        resultRes.setPicture(domain + "/result/images/images.jpg");
 
         return resultRes;
     }
