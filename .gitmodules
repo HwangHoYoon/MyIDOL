@@ -1,0 +1,4 @@
+[submodule "MyIDOL_config"]
+	path = MyIDOL_config
+	url = https://github.com/HwangHoYoon/MyIDOL_config.git
+	branch = main
