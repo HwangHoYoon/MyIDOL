@@ -41,7 +41,7 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_REPO }}/devmyidoldocker -f Dockerfile.dev .
-          docker push ${{ secrets.DOCKER_REPO }}/devmyideldocker
+          docker push ${{ secrets.DOCKER_REPO }}/devmyidoldocker
 
       - name: Deploy
         run: |
