@@ -50,3 +50,18 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task copyGitSubmodule(type: Copy) {
+	from './MyIDOL_config'
+	include '*.yml'
+	into './src/main/resources'
+}
+
+processResources {
+	dependsOn copyGitSubmodule
+}
+
+// plan jar 생성 방지
+jar {
+	enabled = false
+}
