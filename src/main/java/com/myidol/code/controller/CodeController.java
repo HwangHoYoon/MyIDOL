@@ -26,7 +26,7 @@ public class CodeController {
 
     private final CodeService codeService;
 
-    @Operation(summary = "코드 목록 조회(1Depth)", description = "코드 목록 조회(1Depth)")
+    @Operation(summary = "코드 목록 조회(1Depth)", description = "코드 목록 조회(1Depth)", hidden = true)
     @GetMapping(path = "/getCodeList/{main_category}")
     public CommonResponse<List<CodeRes>> getCodeList(@PathVariable("main_category") String mainCategory) {
         CodeReq codeReq = new CodeReq();
@@ -35,7 +35,7 @@ public class CodeController {
         return new CommonResponse<>(String.valueOf(HttpStatus.OK.value()), codeResList, HttpStatus.OK.getReasonPhrase());
     }
 
-    @Operation(summary = "코드 목록 조회(2Depth)", description = "코드 목록 조회(2Depth)")
+    @Operation(summary = "코드 목록 조회(2Depth)", description = "코드 목록 조회(2Depth)", hidden = true)
     @GetMapping(path = "/getCodeList/{main_category}/{sub_category}")
     public CommonResponse<List<CodeRes>> getCodeList(@PathVariable("main_category") String mainCategory, @PathVariable("sub_category") String subCategory) {
         CodeReq codeReq = new CodeReq();

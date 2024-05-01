@@ -9,17 +9,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Slf4j
 @RestController
@@ -52,7 +45,8 @@ public class ResultController {
     }
 
     @GetMapping("/images/{filename}")
-    public ResponseEntity<Resource>  loadImage(@PathVariable("filename") String filename) throws IOException {
+    @Operation(summary = "이미지 조회", description = "이미지 조회", hidden = true)
+    public ResponseEntity<Resource>  loadImage(@PathVariable("filename") String filename) {
         return resultService.loadImage(filename);
     }
 
