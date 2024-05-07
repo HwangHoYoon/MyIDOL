@@ -252,7 +252,7 @@ public class ResultService {
                     .result(result)
                     .build();
         });*/
-        File file = imageUploadToSever("https://devapi.tikitaka.chat/result/image/images.jpg", String.valueOf(result.getId()));
+        File file = imageUploadToSever("https://devapi.tikitaka.chat/result/image/3", String.valueOf(result.getId()));
         ResultFile resultFile = ResultFile.builder()
                 .filename(file.getName())
                 .filepath(file.getParent() + File.separator)
