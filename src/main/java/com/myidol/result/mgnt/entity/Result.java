@@ -71,10 +71,6 @@ public class Result {
     @Column(name = "hobby2", nullable = false, length = 100)
     private String hobby2;
 
-    @Size(max = 2083)
-    @Column(name = "picture", length = 2083)
-    private String picture;
-
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "reg_date")
     private Instant regDate;

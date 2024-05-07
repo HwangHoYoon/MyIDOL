@@ -118,9 +118,7 @@ public class ResultService {
         }
 
         // 이미지 등록
-        String filePath = callApi(resultRst);
-        resultRes.setPicture(filePath);
-
+        callApi(resultRst);
         convertResultToResultRes(resultRst, resultRes);
 
         return resultRes;
@@ -214,6 +212,7 @@ public class ResultService {
             hobby += result.getHobby2();
         }
         resultRes.setHobby(hobby);
+        resultRes.setPicture("https://devapi.tikitaka.chat/result/image/"+result.getId());
     }
 
     public ResponseEntity<Resource> loadImage(String id) {
@@ -240,7 +239,7 @@ public class ResultService {
         return new ResponseEntity<>(resource, header, HttpStatus.OK);
     }
 
-    private String callApi(Result result) {
+    private void callApi(Result result) {
         /*WebClientReq webClientReq = new WebClientReq();
         webClient.post().uri("/api").bodyValue(webClientReq).retrieve().bodyToMono(WebClientRes.class).subscribe(webClientRes1 -> {
             String picture = webClientRes1.getPicture();
@@ -260,7 +259,6 @@ public class ResultService {
                 .result(result)
                 .build();
         resultFileService.saveResultFile(resultFile);
-        return file.getPath();
     }
 
     private String makeFolder() {
