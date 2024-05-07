@@ -1,4 +1,4 @@
-package com.myidol.result.dto;
+package com.myidol.result.mgnt.dto;
 
 import lombok.Data;
 

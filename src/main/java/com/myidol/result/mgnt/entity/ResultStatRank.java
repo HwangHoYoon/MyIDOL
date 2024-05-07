@@ -1,4 +1,4 @@
-package com.myidol.result.entity;
+package com.myidol.result.mgnt.entity;
 
 public interface ResultStatRank {
     String getCategory();

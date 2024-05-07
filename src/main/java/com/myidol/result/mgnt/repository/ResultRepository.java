@@ -1,8 +1,7 @@
-package com.myidol.result.repository;
+package com.myidol.result.mgnt.repository;
 
-import com.myidol.result.dto.ResultStatRankRes;
-import com.myidol.result.entity.Result;
-import com.myidol.result.entity.ResultStatRank;
+import com.myidol.result.mgnt.entity.Result;
+import com.myidol.result.mgnt.entity.ResultStatRank;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

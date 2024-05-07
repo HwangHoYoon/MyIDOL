@@ -1,5 +1,6 @@
-package com.myidol.result.entity;
+package com.myidol.result.category.entity;
 
+import com.myidol.result.mgnt.entity.Result;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,17 +8,20 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
+import java.time.Instant;
+
 @Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @DynamicInsert
-@Table(name = "result_detail")
-public class ResultDetail {
+@Table(name = "result_category")
+public class ResultCategory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ColumnDefault("nextval('result_detail_id_seq'")
+    @ColumnDefault("nextval('result_id_seq'")
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -33,11 +37,11 @@ public class ResultDetail {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "result_master_id", nullable = false)
-    private ResultMaster resultMaster;
+    @JoinColumn(name = "result_id", nullable = false)
+    private Result result;
 
-    @Size(max = 200)
-    @Column(name = "description", length = 200)
-    private String description;
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "reg_date", nullable = false)
+    private Instant regDate;
 
 }

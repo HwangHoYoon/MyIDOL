@@ -1,10 +1,10 @@
-package com.myidol.result.controller;
+package com.myidol.result.mgnt.controller;
 
 import com.myidol.common.response.CommonResponse;
-import com.myidol.result.dto.ResultReq;
-import com.myidol.result.dto.ResultRes;
-import com.myidol.result.dto.ResultStatRankRes;
-import com.myidol.result.service.ResultService;
+import com.myidol.result.mgnt.dto.ResultReq;
+import com.myidol.result.mgnt.dto.ResultRes;
+import com.myidol.result.mgnt.dto.ResultStatRankRes;
+import com.myidol.result.mgnt.service.ResultService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -44,10 +44,10 @@ public class ResultController {
         return new CommonResponse<>(String.valueOf(HttpStatus.OK.value()), resultStatRankRes, HttpStatus.OK.getReasonPhrase());
     }
 
-    @GetMapping("/images/{filename}")
-    @Operation(summary = "이미지 조회", description = "이미지 조회", hidden = true)
-    public ResponseEntity<Resource>  loadImage(@PathVariable("filename") String filename) {
-        return resultService.loadImage(filename);
+    @GetMapping("/image/{id}")
+    @Operation(summary = "이미지 조회", description = "이미지 조회")
+    public ResponseEntity<Resource>  loadImage(@PathVariable("id") String id) {
+        return resultService.loadImage(id);
     }
 
 }

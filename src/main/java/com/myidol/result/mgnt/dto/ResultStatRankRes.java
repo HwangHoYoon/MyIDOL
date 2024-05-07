@@ -1,8 +1,5 @@
-package com.myidol.result.dto;
+package com.myidol.result.mgnt.dto;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
@@ -15,6 +12,5 @@ public class ResultStatRankRes {
     private List<ResultStatRankData> eyeshapeStatRankData;
     private List<ResultStatRankData> faceshapeStatRankData;
     private List<ResultStatRankData> fashionStatRankData;
-    private List<ResultStatRankData> interestStatRankData;
     private List<ResultStatRankData> hobbyStatRankData;
 }

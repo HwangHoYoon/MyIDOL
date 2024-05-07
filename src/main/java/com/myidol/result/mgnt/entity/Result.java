@@ -1,4 +1,4 @@
-package com.myidol.result.entity;
+package com.myidol.result.mgnt.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -64,14 +64,12 @@ public class Result {
     private String fashion;
 
     @Size(max = 100)
-    @NotNull
-    @Column(name = "interest", nullable = false, length = 100)
-    private String interest;
+    @Column(name = "hobby1", nullable = false, length = 100)
+    private String hobby1;
 
     @Size(max = 100)
-    @NotNull
-    @Column(name = "hobby", nullable = false, length = 100)
-    private String hobby;
+    @Column(name = "hobby2", nullable = false, length = 100)
+    private String hobby2;
 
     @Size(max = 2083)
     @Column(name = "picture", length = 2083)

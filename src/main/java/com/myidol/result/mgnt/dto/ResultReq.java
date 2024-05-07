@@ -1,13 +1,12 @@
-package com.myidol.result.dto;
+package com.myidol.result.mgnt.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@Data
-public class ResultRes {
+import java.util.List;
 
-    @Schema(description = "고유번호", example = "1", name = "id")
-    private Integer id;
+@Data
+public class ResultReq {
 
     @Schema(description = "나이", example = "10대", name = "age")
     private String age;
@@ -33,12 +32,13 @@ public class ResultRes {
     @Schema(description = "패션", example = "미니멀", name = "fashion")
     private String fashion;
 
-    @Schema(description = "관심사", example = "영화", name = "interest")
-    private String interest;
+    @Schema(description = "취미1", example = "영화", name = "hobby1")
+    private String hobby1;
 
-    @Schema(description = "취미", example = "축구", name = "hobby")
-    private String hobby;
+    @Schema(description = "취미2", example = "축구", name = "hobby2")
+    private String hobby2;
 
-    @Schema(description = "사진", example = "https://", name = "picture")
-    private String picture;
+    @Schema(description = "취미", example = "[\"축구\", \"농구\"]", name = "hobbyList")
+    private List<String> hobbyList;
+
 }
