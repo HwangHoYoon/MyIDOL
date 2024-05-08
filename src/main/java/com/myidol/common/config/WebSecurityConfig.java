@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -32,16 +33,6 @@ public class WebSecurityConfig {
     //private final LogService logService;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public WebSecurityCustomizer ignoringCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/**");
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(final @NotNull  HttpSecurity http) throws Exception {
         http.httpBasic(HttpBasicConfigurer::disable)
                 .cors(withDefaults())
@@ -49,9 +40,9 @@ public class WebSecurityConfig {
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/**").permitAll()
+                                //.requestMatchers("/**").permitAll().anyRequest().authenticated()
                                 //.requestMatchers(authorizeUrl).permitAll().anyRequest().authenticated()
-                                //.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                 )
                 //.addFilterBefore(new JwtAuthFilter(jwtUtil, authorizeUrl, logService), UsernamePasswordAuthenticationFilter.class)
