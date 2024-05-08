@@ -42,7 +42,7 @@ public class WebSecurityConfig {
                         authorize
                                 //.requestMatchers("/**").permitAll().anyRequest().authenticated()
                                 //.requestMatchers(authorizeUrl).permitAll().anyRequest().authenticated()
-                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                .requestMatchers("/**").permitAll()
 
                 )
                 //.addFilterBefore(new JwtAuthFilter(jwtUtil, authorizeUrl, logService), UsernamePasswordAuthenticationFilter.class)
