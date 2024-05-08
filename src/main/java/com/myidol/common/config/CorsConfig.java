@@ -11,6 +11,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+@Configuration
 public class CorsConfig {
 
     @Value("${cors.origins}")
@@ -20,7 +21,7 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(origins);
+        config.setAllowedOrigins(List.of("https://www.mosol.life", "http://localhost:3000", "https://devapi.tikitaka.chat", "https://mosol.life"));
         config.setAllowCredentials(true);
 
         config.setAllowedMethods(List.of(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.PATCH.name(), HttpMethod.OPTIONS.name()));
