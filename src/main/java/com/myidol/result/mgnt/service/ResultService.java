@@ -77,11 +77,7 @@ public class ResultService {
                 hobby1 = hobbyList.get(0);
                 hobby2 = hobbyList.get(1);
             }
-        } else {
-            hobby1 = resultReq.getHobby1();
-            hobby2 = resultReq.getHobby2();
         }
-
         Result result = Result.builder()
                 .age(resultReq.getAge())
                 .sex(resultReq.getSex())
