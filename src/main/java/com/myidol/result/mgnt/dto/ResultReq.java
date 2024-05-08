@@ -32,6 +32,12 @@ public class ResultReq {
     @Schema(description = "패션", example = "미니멀", name = "fashion")
     private String fashion;
 
+    @Schema(description = "취미1", example = "영화", name = "hobby1")
+    private String hobby1;
+
+    @Schema(description = "취미2", example = "축구", name = "hobby2")
+    private String hobby2;
+
     @Schema(description = "취미", example = "[\"축구\", \"농구\"]", name = "hobbyList")
     private List<String> hobbyList;
 

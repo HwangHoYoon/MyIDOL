@@ -38,8 +38,8 @@ public class WebClientConfig {
         // timeout 설정
         ReactorClientHttpConnector httpConnector = new ReactorClientHttpConnector(
                 HttpClient.create()
-                        .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 120000)
-                        .responseTimeout(Duration.ofSeconds(120)));
+                        .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 1200000)
+                        .responseTimeout(Duration.ofSeconds(1200)));
 
         return WebClient.builder()
                 .baseUrl(apiBaseUrl)

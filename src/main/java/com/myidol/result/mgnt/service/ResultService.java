@@ -3,14 +3,12 @@ package com.myidol.result.mgnt.service;
 import com.myidol.common.exception.CommonErrorCode;
 import com.myidol.common.exception.CommonException;
 import com.myidol.common.exception.ErrorCode;
+import com.myidol.common.response.CommonResponse;
 import com.myidol.result.category.entity.ResultCategory;
 import com.myidol.result.category.service.ResultCategoryService;
 import com.myidol.result.file.entity.ResultFile;
 import com.myidol.result.file.service.ResultFileService;
-import com.myidol.result.mgnt.dto.ResultReq;
-import com.myidol.result.mgnt.dto.ResultRes;
-import com.myidol.result.mgnt.dto.ResultStatRankData;
-import com.myidol.result.mgnt.dto.ResultStatRankRes;
+import com.myidol.result.mgnt.dto.*;
 import com.myidol.result.mgnt.entity.Result;
 import com.myidol.result.mgnt.entity.ResultStatRank;
 import com.myidol.result.mgnt.repository.ResultRepository;
@@ -114,7 +112,7 @@ public class ResultService {
         }
 
         // 이미지 등록
-        callApi(resultRst);
+        callApi(resultReq, resultRst);
         convertResultToResultRes(resultRst, resultRes);
 
         return resultRes;
@@ -208,7 +206,7 @@ public class ResultService {
             hobby += result.getHobby2();
         }
         resultRes.setHobby(hobby);
-        resultRes.setPicture("https://devapi.tikitaka.chat/result/image/"+result.getId());
+        resultRes.setPicture(domain + "/result/image/"+result.getId());
     }
 
     public ResponseEntity<Resource> loadImage(String id) {
@@ -235,26 +233,44 @@ public class ResultService {
         return new ResponseEntity<>(resource, header, HttpStatus.OK);
     }
 
-    private void callApi(Result result) {
-        /*WebClientReq webClientReq = new WebClientReq();
-        webClient.post().uri("/api").bodyValue(webClientReq).retrieve().bodyToMono(WebClientRes.class).subscribe(webClientRes1 -> {
-            String picture = webClientRes1.getPicture();
-            File file = imageUploadToSever("https://devapi.tikitaka.chat/result/images/images.jpg");
-            ResultFile resultFile = ResultFile.builder()
-                    .filename(file.getName())
-                    .filepath(file.getPath())
-                    .status("Y")
-                    .result(result)
-                    .build();
-        });*/
-        File file = imageUploadToSever("https://devapi.tikitaka.chat/result/image/3", String.valueOf(result.getId()));
-        ResultFile resultFile = ResultFile.builder()
-                .filename(file.getName())
-                .filepath(file.getParent() + File.separator)
-                .status("Y")
-                .result(result)
-                .build();
-        resultFileService.saveResultFile(resultFile);
+    private void callApi(ResultReq resultReq, Result result) {
+        String sex = resultReq.getSex();
+        if (sex.contains("남")) {
+            resultReq.setSex("남성");
+        } else if (sex.contains("여")) {
+            resultReq.setSex("여성");
+        }
+        WebClientRes webClientRes = webClient.post().uri("/make_picture").bodyValue(resultReq).retrieve().bodyToMono(WebClientRes.class).block();
+        if (webClientRes != null) {
+            if (StringUtils.equals(webClientRes.getCode(), String.valueOf(HttpStatus.OK.value()))) {
+                ResultRes resultRes = webClientRes.getData();
+                if (resultRes != null) {
+                    String picture = resultRes.getPicture();
+                    if (picture != null && !picture.isEmpty()) {
+                        File file = imageUploadToSever(picture, String.valueOf(result.getId()));
+                        ResultFile resultFile = ResultFile.builder()
+                                .filename(file.getName())
+                                .filepath(file.getParent() + File.separator)
+                                .status("Y")
+                                .result(result)
+                                .build();
+                        resultFileService.saveResultFile(resultFile);
+                    } else {
+                        log.error("사진 정보가 없습니다. {}", resultReq);
+                        throw new CommonException(CommonErrorCode.API_FAIL);
+                    }
+                } else {
+                    log.error("API 결과 DATA NULL. {}", resultReq);
+                    throw new CommonException(CommonErrorCode.API_FAIL);
+                }
+            } else {
+                log.error("API 호출 결과 실패. {}", webClientRes);
+                throw new CommonException(CommonErrorCode.API_FAIL);
+            }
+        } else {
+            log.error("API 호출 실패. {}", resultReq);
+            throw new CommonException(CommonErrorCode.API_FAIL);
+        }
     }
 
     private String makeFolder() {

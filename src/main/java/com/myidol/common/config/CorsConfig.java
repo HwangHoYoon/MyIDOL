@@ -26,7 +26,7 @@ public class CorsConfig {
 
         config.setAllowedMethods(List.of(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.PATCH.name(), HttpMethod.OPTIONS.name()));
         config.setAllowedHeaders(List.of("*"));
-        config.setExposedHeaders(List.of(HttpHeaders.CACHE_CONTROL,  HttpHeaders.CONTENT_LENGTH, HttpHeaders.CONTENT_TYPE, HttpHeaders.EXPIRES, HttpHeaders.PRAGMA));
+        config.setExposedHeaders(List.of(HttpHeaders.CACHE_CONTROL,  HttpHeaders.CONTENT_LENGTH, HttpHeaders.CONTENT_TYPE, HttpHeaders.EXPIRES, HttpHeaders.PRAGMA, HttpHeaders.SET_COOKIE));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

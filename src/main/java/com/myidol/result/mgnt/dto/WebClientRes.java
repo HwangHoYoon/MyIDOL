@@ -4,5 +4,7 @@ import lombok.Data;
 
 @Data
 public class WebClientRes {
-    private String picture;
+    private String code;
+    private ResultRes data;
+    private String message;
 }
