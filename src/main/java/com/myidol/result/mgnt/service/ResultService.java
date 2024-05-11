@@ -135,9 +135,11 @@ public class ResultService {
     }
 
     public ResultStatRankRes selectResultStatRank(String sex) {
-        String sexTxt = "남자";
+        String sexTxt = "";
         if (StringUtils.equals(sex.toLowerCase(), "female")) {
             sexTxt = "여자";
+        } else if (StringUtils.equals(sex.toLowerCase(), "male")) {
+            sexTxt = "남자";
         }
         ResultStatRankRes resultStatRankRes = new ResultStatRankRes();
 
