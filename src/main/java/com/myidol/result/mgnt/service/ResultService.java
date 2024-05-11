@@ -135,40 +135,44 @@ public class ResultService {
     }
 
     public ResultStatRankRes selectResultStatRank(String sex) {
+        String sexTxt = "남자";
+        if (StringUtils.equals(sex.toLowerCase(), "female")) {
+            sexTxt = "여자";
+        }
         ResultStatRankRes resultStatRankRes = new ResultStatRankRes();
 
         List<ResultStatRankData> mbtiStatRankData = new ArrayList<>();
-        List<ResultStatRank> mbtiStatRank = resultRepository.getAverageRank("mbti", sex);
+        List<ResultStatRank> mbtiStatRank = resultRepository.getAverageRank("mbti", sexTxt);
         convertResultStatRankToResultRankData(mbtiStatRank, mbtiStatRankData);
         resultStatRankRes.setMbtiStatRankData(mbtiStatRankData);
 
         List<ResultStatRankData> looklikeRankData = new ArrayList<>();
-        List<ResultStatRank> looklikeStatRank = resultRepository.getAverageRank("looklike", sex);
+        List<ResultStatRank> looklikeStatRank = resultRepository.getAverageRank("looklike", sexTxt);
         convertResultStatRankToResultRankData(looklikeStatRank, looklikeRankData);
         resultStatRankRes.setLooklikeStatRankData(looklikeRankData);
 
         List<ResultStatRankData> heightStatRankData = new ArrayList<>();
-        List<ResultStatRank> heightStatRank = resultRepository.getAverageRank("height", sex);
+        List<ResultStatRank> heightStatRank = resultRepository.getAverageRank("height", sexTxt);
         convertResultStatRankToResultRankData(heightStatRank, heightStatRankData);
         resultStatRankRes.setHeightStatRankData(heightStatRankData);
 
         List<ResultStatRankData> eyeshapeStatRankData = new ArrayList<>();
-        List<ResultStatRank> eyeshapeStatRank = resultRepository.getAverageRank("eyeshape", sex);
+        List<ResultStatRank> eyeshapeStatRank = resultRepository.getAverageRank("eyeshape", sexTxt);
         convertResultStatRankToResultRankData(eyeshapeStatRank, eyeshapeStatRankData);
         resultStatRankRes.setEyeshapeStatRankData(eyeshapeStatRankData);
 
         List<ResultStatRankData> faceshapeStatRankData = new ArrayList<>();
-        List<ResultStatRank> faceshapeStatRank = resultRepository.getAverageRank("faceshape", sex);
+        List<ResultStatRank> faceshapeStatRank = resultRepository.getAverageRank("faceshape", sexTxt);
         convertResultStatRankToResultRankData(faceshapeStatRank, faceshapeStatRankData);
         resultStatRankRes.setFaceshapeStatRankData(faceshapeStatRankData);
 
         List<ResultStatRankData> fashionStatRankData = new ArrayList<>();
-        List<ResultStatRank> fashionStatRank = resultRepository.getAverageRank("fashion", sex);
+        List<ResultStatRank> fashionStatRank = resultRepository.getAverageRank("fashion", sexTxt);
         convertResultStatRankToResultRankData(fashionStatRank, fashionStatRankData);
         resultStatRankRes.setFashionStatRankData(fashionStatRankData);
 
         List<ResultStatRankData> hobbyStatRankData = new ArrayList<>();
-        List<ResultStatRank> hobbyStatRank = resultRepository.getAverageRank("hobby", sex);
+        List<ResultStatRank> hobbyStatRank = resultRepository.getAverageRank("hobby", sexTxt);
         convertResultStatRankToResultRankData(hobbyStatRank, hobbyStatRankData);
         resultStatRankRes.setHobbyStatRankData(hobbyStatRankData);
 
