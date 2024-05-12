@@ -242,9 +242,9 @@ public class ResultService {
     private void callApi(ResultReq resultReq, Result result) {
         String sex = resultReq.getSex();
         if (sex.contains("남")) {
-            resultReq.setSex("남성");
-        } else if (sex.contains("여")) {
             resultReq.setSex("여성");
+        } else if (sex.contains("여")) {
+            resultReq.setSex("남성");
         }
         WebClientRes webClientRes = webClient.post().uri("/make_picture").bodyValue(resultReq).retrieve().bodyToMono(WebClientRes.class).block();
         if (webClientRes != null) {
