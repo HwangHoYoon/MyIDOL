@@ -50,12 +50,12 @@ public class Result {
 
     @Size(max = 100)
     @NotNull
-    @Column(name = "eyeshape", nullable = false, length = 100)
+    @Column(name = "eyeshape", length = 100)
     private String eyeshape;
 
     @Size(max = 100)
     @NotNull
-    @Column(name = "faceshape", nullable = false, length = 100)
+    @Column(name = "faceshape", length = 100)
     private String faceshape;
 
     @Size(max = 100)
