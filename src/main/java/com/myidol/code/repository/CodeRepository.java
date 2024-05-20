@@ -11,4 +11,6 @@ public interface CodeRepository extends JpaRepository<Code, Integer> {
     List<Code> findByMainCategoryIgnoreCase(String mainCategory);
 
     List<Code> findByMainCategoryIgnoreCaseAndSubCategoryIgnoreCase(String mainCategory, String subCategory);
+
+    Code findByMainCategoryIgnoreCaseAndNameIgnoreCase(String mainCategory, String name);
 }
