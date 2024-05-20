@@ -315,4 +315,8 @@ public class ResultService {
         }
         return file;
     }
+
+    public Long selectResultCount() {
+        return resultRepository.count();
+    }
 }

@@ -50,4 +50,10 @@ public class ResultController {
         return resultService.loadImage(id);
     }
 
+    @Operation(summary = "총 건수 조회", description = "총 건수 조회")
+    @GetMapping(path = "/getResultCount")
+    public CommonResponse<Long> getResultCount() {
+        Long count = resultService.selectResultCount();
+        return new CommonResponse<>(String.valueOf(HttpStatus.OK.value()), count, HttpStatus.OK.getReasonPhrase());
+    }
 }
